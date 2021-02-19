@@ -5,7 +5,7 @@ const car = {
     return db.query('select * from car order by idcar desc', callback);
   },
   getById: function(id, callback) {
-    return db.query('select * from car where idcar=?'+id, callback);
+    return db.query('select * from car where idcar=?'[id], callback);
   },
   add: function(car, callback) {
     return db.query(
@@ -15,11 +15,11 @@ const car = {
     );
   },
   delete: function(id, callback) {
-    return db.query('delete from car where id_car=?', [id], callback);
+    return db.query('delete from car where idcar=?', [id], callback);
   },
   update: function(id, car, callback) {
     return db.query(
-      'update car set brand=?,model=?, yearmodel=? where id_car=?',
+      'update car set brand=?,model=?, yearmodel=? where idcar=?',
       [car.brand, car.model, car.yearmodel, id],
       callback
     );
