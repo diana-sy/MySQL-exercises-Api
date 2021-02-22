@@ -7,21 +7,27 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var carsRouter = require('./routes/car');
 var ownerRouter = require('./routes/owner');
+var carownerRouter = require('./routes/carowner');
+var userRouter = require('./routes/user');
+var userRouter = require('./routes/login');
 
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(basicAuth({user: {'caradmin': '12345'}}));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/car', carsRouter);
+app.use('/car', carRouter);
 app.use('/owner', ownerRouter);
+app.use('/carowner', carownerRouter);
+app.use('/user', carownerRouter);
+app.use('/login', carownerRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
